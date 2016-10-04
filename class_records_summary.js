@@ -50,11 +50,14 @@ function generateClassRecordSummary(scores) {
     var studentExerciseAverage = calculateExerciseAverage(student.scores.exercises)
     var studentGrade;
 
-    student.scores.exams.forEach(assignExams);
+    assignAndFormat();
 
-    studentExamAverage /= student.scores.exams.length;
-    studentGrade = 0.65 * studentExamAverage + 0.35 * studentExerciseAverage;
-    report.studentGrades.push(formatGrade(studentGrade));
+    function assignAndFormat() {
+      student.scores.exams.forEach(assignExams);
+      studentExamAverage /= student.scores.exams.length;
+      studentGrade = 0.65 * studentExamAverage + 0.35 * studentExerciseAverage;
+      report.studentGrades.push(formatGrade(studentGrade));
+    }
 
     function assignExams(exam, testNum) {
       studentExamAverage += exam;
